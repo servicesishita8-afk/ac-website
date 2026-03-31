@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ishita AC Services & Sales | Best AC Service in Thane | Repair • Installation • Sales</title>
+  <meta name="description" content="Professional AC repair, installation, gas refilling, and sales in Thane, Maharashtra. Trusted service with 24/7 support. Book your AC service today!">
+  <meta name="keywords" content="AC service in Thane, AC repair near me, AC installation Thane, gas refilling, AC maintenance, split AC, window AC, used AC Thane">
+  <meta name="author" content="ishita AC Services & Sales">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Tailwind CSS + Font Awesome + Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  
+  <!-- React & ReactDOM & Babel for JSX -->
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <style>
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1f1f1f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2c7da0;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1f6392;
+    }
+    .hover-lift {
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.5);
+    }
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .sticky-header {
+      backdrop-filter: blur(12px);
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+  </style>
+</head>
+<body class="bg-black text-gray-200">
+
+<div id="root"></div>
+
+<script type="text/babel">
+  // Business constants
+  const BUSINESS_PHONE = "919820007612";     // India phone without '+' for wa.me
+  const WHATSAPP_LINK = `https://wa.me/${BUSINESS_PHONE}`;
+  const CALL_LINK = `tel:+91${BUSINESS_PHONE}`;
+  const BUSINESS_NAME = "ishita AC Services & Sales";
+  
+  // Services data
+  const services = [
+    { id: 1, title: "AC Repair", icon: "fas fa-tools", desc: "Fast diagnosis & repair of all AC brands. Get your cooling back within hours." },
+    { id: 2, title: "AC Installation", icon: "fas fa-wrench", desc: "Professional installation for split, window, and cassette ACs. Safety guaranteed." },
+    { id: 3, title: "AC Gas Refilling", icon: "fas fa-wind", desc: "Eco-friendly refrigerant refill to boost cooling & energy efficiency." },
+    { id: 4, title: "AC Servicing & Cleaning", icon: "fas fa-broom", desc: "Deep cleaning, filter wash, coil disinfecting for pure air & performance." },
+    { id: 5, title: "AMC (Annual Maintenance)", icon: "fas fa-calendar-alt", desc: "Yearly plans covering 2 services + priority support & discounts." }
+  ];
+  
+  // Products data - now with perfect AC images
+  const products = [
+    { 
+      id: 1, 
+      name: "Split AC", 
+      image: "https://images.unsplash.com/photo-1581428982869-e410dd047a90?w=600&auto=format", 
+      price: "₹28,999 onwards", 
+      type: "1.5 Ton Inverter", 
+      condition: "New",
+      badgeColor: "bg-blue-600/20 text-blue-300"
+    },
+    { 
+      id: 2, 
+      name: "Window AC", 
+      image: "https://images.unsplash.com/photo-1567739411244-90813c7a6e8e?w=600&auto=format", 
+      price: "₹22,499 onwards", 
+      type: "1 Ton Fixed Speed", 
+      condition: "New",
+      badgeColor: "bg-blue-600/20 text-blue-300"
+    },
+    // Two used window AC units on rent (each ₹15,000 / month)
+    { 
+      id: 3, 
+      name: "Used Window AC (1 Ton) – Rent", 
+      image: "https://images.unsplash.com/photo-1600681918126-6b15271cd3c7?w=600&auto=format",  // realistic window AC image
+      price: "₹15,000 / month", 
+      type: "Second-hand / Rental", 
+      condition: "On Rent",
+      badgeColor: "bg-green-600/20 text-green-300"
+    },
+    { 
+      id: 4, 
+      name: "Used Window AC (1.5 Ton) – Rent", 
+      image: "https://images.unsplash.com/photo-1600681918126-6b15271cd3c7?w=600&auto=format",  // same style, different tonnage
+      price: "₹15,000 / month", 
+      type: "Second-hand / Rental", 
+      condition: "On Rent",
+      badgeColor: "bg-green-600/20 text-green-300"
+    },
+    { 
+      id: 5, 
+      name: "Used AC (Refurbished)", 
+      image: "https://images.unsplash.com/photo-1567721913486-6585f069b332?w=600&auto=format", 
+      price: "₹9,999 - ₹15,999", 
+      type: "Splits/Windows", 
+      condition: "6 months warranty",
+      badgeColor: "bg-amber-600/20 text-amber-300"
+    }
+  ];
+  
+  // Reviews data with star ratings
+  const reviews = [
+    { id: 1, name: "Amit Sharma", rating: 5, text: "Excellent service! The technician arrived on time and fixed my split AC in 30 mins. Highly recommended AC service in Thane.", location: "Thane West" },
+    { id: 2, name: "Priya Mehta", rating: 5, text: "Very professional installation team. They explained everything and price was reasonable. Best AC repair near me!", location: "Vartak Nagar" },
+    { id: 3, name: "Rohit Patil", rating: 4, text: "Gas refilling was done quickly. Now AC works like new. Great support & follow-up. Will take AMC next year.", location: "Naupada" }
+  ];
+  
+  // Helper: render stars from rating
+  const StarRating = ({ rating }) => {
+    return (
+      <div className="flex items-center gap-1 text-yellow-400">
+        {[...Array(5)].map((_, i) => (
+          <i key={i} className={`fas fa-star ${i < rating ? 'text-yellow-400' : 'text-gray-600'}`}></i>
+        ))}
+      </div>
+    );
+  };
+  
+  // Navigation Header Component (Sticky)
+  const Navbar = ({ scrollToSection }) => {
+    const navItems = [
+      { name: "Home", refKey: "home" },
+      { name: "Services", refKey: "services" },
+      { name: "Products", refKey: "products" },
+      { name: "Booking", refKey: "booking" },
+      { name: "About", refKey: "about" },
+      { name: "Reviews", refKey: "reviews" },
+      { name: "Contact", refKey: "contact" }
+    ];
+    
+    return (
+      <header className="sticky top-0 z-50 w-full sticky-header border-b border-gray-800 shadow-lg">
+        <div className="container mx-auto px-5 py-3 flex flex-wrap items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <i className="fas fa-snowflake text-blue-400 text-2xl"></i>
+            <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">ishita AC</span>
+          </div>
+          <nav className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm font-medium">
+            {navItems.map(item => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.refKey)}
+                className="hover:text-blue-400 transition-colors duration-200 px-2 py-1 rounded-md hover:bg-gray-800"
+              >
+                {item.name}
+              </button>
+            ))}
+          </nav>
+        </div>
+      </header>
+    );
+  };
+  
+  // Hero Section
+  const Hero = ({ scrollToSection }) => {
+    const openWhatsApp = () => window.open(WHATSAPP_LINK, '_blank');
+    return (
+      <section id="home" className="relative min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <i className="fas fa-fan text-9xl absolute top-10 right-10 text-blue-500 animate-pulse"></i>
+        </div>
+        <div className="container mx-auto px-6 py-20 text-center relative z-10 animate-fade-up">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{BUSINESS_NAME}</h1>
+          <p className="text-xl md:text-2xl text-blue-300 font-semibold tracking-wide">Repair • Installation • Sales</p>
+          <p className="text-gray-400 max-w-2xl mx-auto mt-4 text-base md:text-lg">Trusted AC experts in Thane — fast, affordable, and reliable service for all brands.</p>
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <a href={CALL_LINK} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 transition-all shadow-lg hover:scale-105"><i className="fas fa-phone-alt"></i> Call Now</a>
+            <button onClick={() => scrollToSection('booking')} className="bg-transparent border-2 border-blue-500 hover:bg-blue-500 text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 transition-all"><i className="fas fa-calendar-check"></i> Book Service</button>
+            <button onClick={openWhatsApp} className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 transition-all"><i className="fab fa-whatsapp"></i> WhatsApp</button>
+          </div>
+          <div className="mt-12 flex justify-center gap-6 text-gray-400 text-sm">
+            <span><i className="fas fa-check-circle text-green-500 mr-1"></i> 24/7 Support</span>
+            <span><i className="fas fa-tools text-blue-500 mr-1"></i> Certified Technicians</span>
+            <span><i className="fas fa-rupee-sign text-yellow-500 mr-1"></i> Affordable Pricing</span>
+          </div>
+        </div>
+      </section>
+    );
+  };
+  
+  // Services Section
+  const Services = () => {
+    return (
+      <section id="services" className="py-20 bg-gray-900/50 scroll-mt-20">
+        <div className="container mx-auto px-5">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">Our <span className="text-blue-400">AC Services</span></h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">Comprehensive solutions for residential & commercial AC needs in Thane</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {services.map((service) => (
+              <div key={service.id} className="bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300 hover-lift text-center">
+                <div className="w-16 h-16 mx-auto bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
+                  <i className={`${service.icon} text-3xl text-blue-400`}></i>
+                </div>
+                <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+                <p className="text-gray-300 text-sm leading-relaxed">{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  };
+  
+  // Products Section (includes the two rental window ACs with perfect images)
+  const Products = () => {
+    return (
+      <section id="products" className="py-20 bg-black scroll-mt-20">
+        <div className="container mx-auto px-5">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">AC Units <span className="text-blue-400">Sales & Rentals</span></h2>
+            <p className="text-gray-400">Best prices in Thane | New units & affordable rentals on used window ACs</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+              <div key={product.id} className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-blue-500 transition-all duration-300 hover-lift">
+                <div className="h-56 overflow-hidden bg-gray-800">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-cover hover:scale-105 transition duration-500" 
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="flex justify-between items-start">
+                    <h3 className="text-xl font-bold">{product.name}</h3>
+                    <span className={`text-xs px-2 py-1 rounded-full ${product.badgeColor}`}>
+                      {product.condition}
+                    </span>
+                  </div>
+                  <p className="text-gray-400 text-sm mt-1">{product.type}</p>
+                  <div className="mt-3 flex justify-between items-center">
+                    <span className="text-2xl font-semibold text-green-400">{product.price}</span>
+                    <button onClick={() => window.open(WHATSAPP_LINK, '_blank')} className="bg-gray-800 hover:bg-green-600 text-sm px-3 py-2 rounded-lg flex items-center gap-1 transition"><i className="fab fa-whatsapp"></i> Enquire</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10 text-sm text-gray-500">
+            <i className="fas fa-hand-holding-usd mr-1"></i> Rent a used window AC at just ₹15,000/month – fully serviced and warranty included!
+          </div>
+        </div>
+      </section>
+    );
+  };
+  
+  // Booking Section with WhatsApp integration
+  const Booking = () => {
+    const [formData, setFormData] = React.useState({
+      name: '', phone: '', address: '', serviceType: 'AC Repair'
+    });
+    
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const { name, phone, address, serviceType } = formData;
+      if (!name || !phone || !address) {
+        alert("Please fill all required fields (Name, Phone, Address)");
+        return;
+      }
+      const message = `*New AC Service Booking*%0A📅 Customer: ${name}%0A📞 Phone: ${phone}%0A📍 Address: ${address}%0A🔧 Service: ${serviceType}%0A🌐 From: ishita AC Website`;
+      const whatsappUrl = `https://wa.me/${BUSINESS_PHONE}?text=${message}`;
+      window.open(whatsappUrl, '_blank');
+      setFormData({ name: '', phone: '', address: '', serviceType: 'AC Repair' });
+    };
+    
+    const serviceOptions = ["AC Repair", "AC Installation", "AC Gas Refilling", "AC Servicing & Cleaning", "AMC (Annual Maintenance)"];
+    
+    return (
+      <section id="booking" className="py-20 bg-gradient-to-b from-gray-900 to-black scroll-mt-20">
+        <div className="container mx-auto px-5 max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Book AC Service <span className="text-blue-400">Instantly</span></h2>
+            <p className="text-gray-400">Fill details and we'll connect via WhatsApp / Call within 30 mins</p>
+          </div>
+          <div className="bg-gray-800/40 border border-gray-700 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-2xl">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-medium mb-1 text-gray-300">Full Name *</label>
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="Ramesh Patil" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1 text-gray-300">Phone Number *</label>
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500" placeholder="9876543210" required />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-gray-300">Address (Area / Locality) *</label>
+                <input type="text" name="address" value={formData.address} onChange={handleChange} className="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500" placeholder="Thane West, near station" required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-gray-300">Service Type</label>
+                <select name="serviceType" value={formData.serviceType} onChange={handleChange} className="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500">
+                  {serviceOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                </select>
+              </div>
+              <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl font-bold text-white flex items-center justify-center gap-2 transition-all text-lg"><i className="fab fa-whatsapp"></i> Send Booking via WhatsApp</button>
+            </form>
+            <p className="text-xs text-gray-500 text-center mt-4">📞 Or call us directly: <a href={CALL_LINK} className="text-blue-400">+91 {BUSINESS_PHONE}</a></p>
+          </div>
+        </div>
+      </section>
+    );
+  };
+  
+  // About Section
+  const About = () => {
+    return (
+      <section id="about" className="py-20 bg-gray-900/40 scroll-mt-20">
+        <div className="container mx-auto px-5 max-w-5xl">
+          <div className="flex flex-col md:flex-row gap-12 items-center">
+            <div className="md:w-1/2">
+              <div className="relative">
+                <div className="absolute -inset-1 bg-blue-500/20 rounded-2xl blur-md"></div>
+                <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?w=600&auto=format" alt="AC technician Thane" className="relative rounded-2xl shadow-2xl object-cover w-full h-64 md:h-80" loading="lazy"/>
+              </div>
+            </div>
+            <div className="md:w-1/2 space-y-4">
+              <h2 className="text-3xl md:text-4xl font-bold">About <span className="text-blue-400">ishita AC</span></h2>
+              <p className="text-gray-300 leading-relaxed">Since 2018, <strong className="text-white">ishita AC Services & Sales</strong> has been Thane's most trusted AC partner. We combine technical expertise with genuine spare parts to deliver world-class cooling solutions.</p>
+              <p className="text-gray-300 leading-relaxed">Our certified technicians handle all major brands — Daikin, LG, Voltas, Blue Star, O General, and more. We offer emergency repairs, installation, AMC plans, and new/used AC sales with warranty, plus rental options on window units.</p>
+              <div className="flex flex-wrap gap-4 pt-2">
+                <div className="flex items-center gap-2"><i className="fas fa-check-circle text-green-500"></i><span>100% Satisfaction</span></div>
+                <div className="flex items-center gap-2"><i className="fas fa-shield-alt text-blue-500"></i><span>1 Year Warranty on Repairs</span></div>
+                <div className="flex items-center gap-2"><i className="fas fa-clock text-blue-400"></i><span>Same-Day Service</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  };
+  
+  // Reviews Section
+  const Reviews = () => {
+    return (
+      <section id="reviews" className="py-20 bg-black scroll-mt-20">
+        <div className="container mx-auto px-5">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold">Customer <span className="text-blue-400">Testimonials</span></h2>
+            <p className="text-gray-400">What our clients say about AC service in Thane</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            {reviews.map((review) => (
+              <div key={review.id} className="bg-gray-800/60 rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center text-white font-bold">{review.name.charAt(0)}</div>
+                  <div>
+                    <h4 className="font-semibold">{review.name}</h4>
+                    <p className="text-xs text-gray-400">{review.location}</p>
+                  </div>
+                </div>
+                <StarRating rating={review.rating} />
+                <p className="mt-3 text-gray-300 text-sm leading-relaxed">"{review.text}"</p>
+                <i className="fas fa-quote-right text-gray-700 mt-3 text-right block"></i>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <div className="inline-flex items-center bg-gray-800 rounded-full px-4 py-2 gap-1"><i className="fas fa-star text-yellow-400"></i><span className="font-bold">4.9/5</span><span className="text-gray-400 text-sm"> based on 380+ reviews</span></div>
+          </div>
+        </div>
+      </section>
+    );
+  };
+  
+  // Contact Section with Google Maps embed
+  const Contact = () => {
+    return (
+      <section id="contact" className="py-20 bg-gray-900 scroll-mt-20">
+        <div className="container mx-auto px-5">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold">Get in <span className="text-blue-400">Touch</span></h2>
+            <p className="text-gray-400">We're located in Thane — reach out for quick AC support</p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div className="space-y-6 bg-gray-800/30 p-6 rounded-2xl border border-gray-700">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-blue-600/20 flex items-center justify-center"><i className="fas fa-phone-alt text-blue-400 text-xl"></i></div>
+                <div><p className="text-sm text-gray-400">Call for emergency / booking</p><a href={CALL_LINK} className="text-xl font-bold hover:text-blue-400 transition">+91 {BUSINESS_PHONE}</a></div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-green-600/20 flex items-center justify-center"><i className="fab fa-whatsapp text-green-400 text-xl"></i></div>
+                <div><p className="text-sm text-gray-400">WhatsApp Chat</p><a href={WHATSAPP_LINK} target="_blank" className="text-xl font-bold hover:text-green-400 transition">Click to message</a></div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center"><i className="fas fa-clock text-blue-300"></i></div>
+                <div><p className="text-sm text-gray-400">Business Hours</p><p className="font-medium">Mon-Sat: 9:00 AM – 8:00 PM <br /> Sunday: Closed (Emergency only)</p></div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-red-600/20 flex items-center justify-center"><i className="fas fa-map-marker-alt text-red-400"></i></div>
+                <div><p className="text-sm text-gray-400">Visit / Service Hub</p><p className="font-medium">Gandhi nagar, Thane (West), Maharashtra - 400601</p></div>
+              </div>
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-gray-700 shadow-xl h-64 lg:h-auto">
+              <iframe 
+                title="Google Maps Thane Location"
+                className="w-full h-full min-h-[250px]"
+                loading="lazy"
+                src="https://maps.google.com/maps?q=Thane%20West%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                referrerPolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  };
+  
+  const Footer = () => {
+    return (
+      <footer className="bg-black border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
+        <div className="container mx-auto px-5">
+          <p>© {new Date().getFullYear()} ishita AC Services & Sales — Best AC repair & sales in Thane | All Rights Reserved</p>
+          <p className="mt-2">📍 Serving Thane, Mulund, Dombivli & surrounding areas | Rent a used window AC @ ₹15,000/month</p>
+        </div>
+      </footer>
+    );
+  };
+  
+  // Floating WhatsApp button
+  const FloatingWhatsApp = () => {
+    return (
+      <a 
+        href={WHATSAPP_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all z-50 hover:scale-110 flex items-center justify-center"
+        aria-label="WhatsApp Chat"
+      >
+        <i className="fab fa-whatsapp text-3xl"></i>
+      </a>
+    );
+  };
+  
+  // Main App Component
+  const App = () => {
+    const sectionRefs = {
+      home: React.useRef(null),
+      services: React.useRef(null),
+      products: React.useRef(null),
+      booking: React.useRef(null),
+      about: React.useRef(null),
+      reviews: React.useRef(null),
+      contact: React.useRef(null)
+    };
+    
+    const scrollToSection = (sectionKey) => {
+      const ref = sectionRefs[sectionKey];
+      if (ref && ref.current) {
+        ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+    
+    React.useEffect(() => {
+      sectionRefs.home.current = document.getElementById('home');
+      sectionRefs.services.current = document.getElementById('services');
+      sectionRefs.products.current = document.getElementById('products');
+      sectionRefs.booking.current = document.getElementById('booking');
+      sectionRefs.about.current = document.getElementById('about');
+      sectionRefs.reviews.current = document.getElementById('reviews');
+      sectionRefs.contact.current = document.getElementById('contact');
+    }, []);
+    
+    return (
+      <div className="bg-black">
+        <Navbar scrollToSection={scrollToSection} />
+        <Hero scrollToSection={scrollToSection} />
+        <Services />
+        <Products />
+        <Booking />
+        <About />
+        <Reviews />
+        <Contact />
+        <Footer />
+        <FloatingWhatsApp />
+      </div>
+    );
+  };
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
